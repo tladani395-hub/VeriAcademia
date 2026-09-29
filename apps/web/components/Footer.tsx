@@ -21,19 +21,30 @@ export function Footer() {
         </div>
         <div>
           <h4>Platform</h4>
-          <Link href="/trust">How verification works</Link>
-          <Link href="/analytics">Public analytics</Link>
-          <Link href="/auth/sign-up">Register a university</Link>
+          <Link href="/about">About Us</Link>
+          <Link href="/analytics">Analytics</Link>
+          <Link href="/universities">Universities</Link>
         </div>
         <div>
-          <h4>Support</h4>
-          <Link href="/help">Help Center</Link>
-          <Link href="/trust">Privacy Policy</Link>
-          <Link href="/trust">Accessibility</Link>
+          <h4>Resources</h4>
+          <Link href="/publications">Publications</Link>
+          <Link href="/patents">Patents</Link>
+          <Link href="/researchers">Researchers</Link>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <Link href="/terms">Terms & Conditions</Link>
+          <Link href="/privacy">Privacy Policy</Link>
+        </div>
+        <div>
+          <h4>Account</h4>
+          <Link href="/auth/sign-in">Sign In</Link>
+          <Link href="/dashboard">Dashboard</Link>
         </div>
       </div>
-      <div className="wrap" style={{ marginTop: 30, borderTop: '1px solid var(--line)', paddingTop: 20, fontSize: 14, textAlign: 'center', color: 'var(--muted)' }}>
-        © 2026 VeriAcademia. All rights reserved. Built for verifiable institutional research data.
+      <div className="wrap" style={{ marginTop: 40, borderTop: '1px solid var(--line)', paddingTop: 24, fontSize: 13, textAlign: 'center', color: 'var(--muted)', display: 'flex', justifyContent: 'space-between' }}>
+        <p>© 2026 VeriAcademia. All rights reserved.</p>
+        <p>Built for verifiable institutional research data.</p>
       </div>
     </footer>
   );

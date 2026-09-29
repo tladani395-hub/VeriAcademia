@@ -1,5 +1,12 @@
-import Link from 'next/link';
+import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
-  return <><div className="public-bar"><div className="wrap"><Link href="/">← VeriAcademia</Link><span className="mono">PUBLIC RESEARCH DIRECTORY</span></div></div>{children}</>;
+  return (
+    <div className="site-wrapper" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Navbar />
+      <main style={{ flex: 1 }}>{children}</main>
+      <Footer />
+    </div>
+  );
 }

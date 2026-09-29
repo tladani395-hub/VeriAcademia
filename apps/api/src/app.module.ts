@@ -7,6 +7,7 @@ import { PublicationsController } from './publications/publications.controller';
 import { PatentsController } from './patents/patents.controller';
 import { AccessRequestsController } from './access-requests/access-requests.controller';
 import { AnalyticsController } from './analytics/analytics.controller';
+import { SearchesController } from './searches/searches.controller';
 import { PlatformAdminController } from './platform/platform.controller';
 
 @Module({
@@ -20,6 +21,7 @@ import { PlatformAdminController } from './platform/platform.controller';
     AccessRequestsController,
     AnalyticsController,
     PlatformAdminController,
+    SearchesController,
   ],
 })
 export class AppModule {}

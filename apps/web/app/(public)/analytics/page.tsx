@@ -1,2 +1,33 @@
-const metrics=[['48','Universities'],['12,482','Researchers'],['84,921','Publications'],['6,342','Patents']];
-export default function AnalyticsPage(){return <main><section className="page-hero"><div className="wrap"><p className="eyebrow mono">PUBLIC ANALYTICS</p><h1>Research in context.</h1><p className="lede">A transparent view of the verified research network. Figures are updated as records pass review.</p></div></section><section><div className="wrap"><div className="metric-grid">{metrics.map(([v,l])=><div className="metric-card" key={l}><b>{v}</b><span>{l}</span></div>)}</div><div className="analytics-grid"><div className="chart-card"><span className="mono">PUBLICATIONS BY YEAR</span><div className="bars">{[42,58,51,74,88,100].map((h,i)=><div className="bar-wrap" key={i}><div className="bar" style={{height:`${h}%`}}/><small>{2021+i}</small></div>)}</div></div><div className="chart-card"><span className="mono">RESEARCH AREAS</span><div className="area-list"><p><span>Engineering</span><b style={{width:'82%'}}/></p><p><span>Computer science</span><b style={{width:'68%'}}/></p><p><span>Environmental science</span><b style={{width:'54%'}}/></p><p><span>Health sciences</span><b style={{width:'43%'}}/></p></div></div></div></div></section></main>}
+export default function PublicAnalyticsPage() {
+  return (
+    <div className="wrap" style={{ padding: '80px 0' }}>
+      <header style={{ marginBottom: 40, textAlign: 'center' }}>
+        <h1 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)' }}>Platform Analytics</h1>
+        <p className="lede" style={{ fontSize: 1.25, maxWidth: 700, margin: '16px auto 0' }}>
+          Real-time visibility into the growth of academic knowledge being fostered and discovered on VeriAcademia.
+        </p>
+      </header>
+
+      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginBottom: 60 }}>
+        {[
+          { label: 'Total Publications', value: '1,280+' },
+          { label: 'Active Researchers', value: '450+' },
+          { label: 'Member Institutions', value: '25+' },
+          { label: 'Patents Filed', value: '185+' },
+        ].map(stat => (
+          <div key={stat.label} style={{ background: 'var(--surface)', padding: 32, borderRadius: 16, border: '1px solid var(--line)', textAlign: 'center' }}>
+            <div style={{ fontSize: 18, fontWeight: 600, color: 'var(--muted)', marginBottom: 12 }}>{stat.label}</div>
+            <div style={{ fontSize: 40, fontWeight: 700, color: 'var(--brand)' }}>{stat.value}</div>
+          </div>
+        ))}
+      </section>
+
+      <section style={{ background: 'var(--surface)', padding: 40, borderRadius: 16, border: '1px solid var(--line)' }}>
+        <h2>Research Area Distribution</h2>
+        <div style={{ height: 400, marginTop: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--paper)', borderRadius: 12, border: '1px dashed var(--line)', color: 'var(--muted)' }}>
+          [Interactive Research Area Chart Placeholder]
+        </div>
+      </section>
+    </div>
+  );
+}

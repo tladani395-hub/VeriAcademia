@@ -3,6 +3,15 @@
   "private": true,
   "version": "0.1.0",
   "packageManager": "pnpm@9.15.0",
-  "scripts": {"dev": "pnpm --filter web dev", "build": "pnpm --filter web build", "lint": "pnpm --filter web lint", "typecheck": "pnpm --filter web typecheck"},
-  "devDependencies": {"typescript": "^5.7.3"}
+  "scripts": {
+    "dev": "pnpm --parallel --filter web --filter api dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "build": "pnpm --filter web build",
+    "lint": "pnpm --filter web lint",
+    "typecheck": "pnpm --filter web typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
 }

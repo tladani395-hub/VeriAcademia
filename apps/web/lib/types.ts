@@ -14,7 +14,7 @@ export interface Researcher {
   role: string;
   university: string;
   publications: number;
-  pastents: number;
+  patents: number;
 }
 
 export interface Publication {
@@ -35,4 +35,5 @@ export interface Patent {
   university: string;
   date: string;
   techArea: 'Artificial Intelligence' | 'Engineering';
+  status: 'GRANTED' | 'APPLICATION' | 'EXPIRED';
 }

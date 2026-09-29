@@ -1,6 +1,3 @@
-export * from './schema';
-export * from './client';
-
 export interface UniversitySeed {
   id: string;
   name: string;
@@ -36,23 +33,6 @@ export interface PublicationSeed {
   universitySlug: string;
 }
 
-export interface PatentSeed {
-  id: string;
-  title: string;
-  patentNumber: string;
-  abstract: string;
-  applicationDate: string;
-  grantDate?: string;
-  technologyArea: string;
-  verificationStatus: 'VERIFIED' | 'PENDING_REVIEW' | 'REJECTED';
-  verifiedBy?: string;
-  verifiedAt?: string;
-  isProtected: boolean;
-  inventors: string[];
-  universityName: string;
-  universitySlug: string;
-}
-
 export interface ResearcherSeed {
   id: string;
   name: string;
@@ -68,6 +48,19 @@ export interface ResearcherSeed {
   isVerified: boolean;
   publicationsCount: number;
   patentsCount: number;
+}
+
+export interface PatentSeed {
+  id: string;
+  title: string;
+  slug: string;
+  number: string;
+  inventors: string[];
+  universityName: string;
+  universitySlug: string;
+  issueDate: string;
+  techArea: string;
+  status: 'GRANTED' | 'APPLICATION' | 'EXPIRED';
 }
 
 export const INITIAL_UNIVERSITIES: UniversitySeed[] = [
@@ -135,6 +128,70 @@ export const INITIAL_UNIVERSITIES: UniversitySeed[] = [
     patentsCount: 980,
     institutesCount: 14,
     departmentsCount: 40,
+  },
+  {
+    id: 'uni-eth-05',
+    name: 'ETH Zurich',
+    slug: 'eth-zurich',
+    abbreviation: 'ETH Zurich',
+    website: 'https://ethz.ch',
+    country: 'Switzerland',
+    state: 'Zurich',
+    city: 'Zurich',
+    status: 'VERIFIED',
+    researchersCount: 2150,
+    publicationsCount: 28900,
+    patentsCount: 820,
+    institutesCount: 8,
+    departmentsCount: 16,
+  },
+  {
+    id: 'uni-nus-06',
+    name: 'National University of Singapore',
+    slug: 'nus',
+    abbreviation: 'NUS',
+    website: 'https://nus.edu.sg',
+    country: 'Singapore',
+    state: 'Singapore',
+    city: 'Kent Ridge',
+    status: 'VERIFIED',
+    researchersCount: 2600,
+    publicationsCount: 31200,
+    patentsCount: 750,
+    institutesCount: 11,
+    departmentsCount: 30,
+  },
+  {
+    id: 'uni-iitb-07',
+    name: 'Indian Institute of Technology Bombay',
+    slug: 'iit-bombay',
+    abbreviation: 'IIT Bombay',
+    website: 'https://iitb.ac.in',
+    country: 'India',
+    state: 'Maharashtra',
+    city: 'Mumbai',
+    status: 'VERIFIED',
+    researchersCount: 1850,
+    publicationsCount: 21400,
+    patentsCount: 640,
+    institutesCount: 7,
+    departmentsCount: 18,
+  },
+  {
+    id: 'uni-tokyo-08',
+    name: 'University of Tokyo',
+    slug: 'utokyo',
+    abbreviation: 'UTokyo',
+    website: 'https://u-tokyo.ac.jp',
+    country: 'Japan',
+    state: 'Tokyo',
+    city: 'Bunkyo',
+    status: 'PENDING',
+    researchersCount: 2980,
+    publicationsCount: 34100,
+    patentsCount: 910,
+    institutesCount: 13,
+    departmentsCount: 35,
   }
 ];
 
@@ -182,6 +239,34 @@ export const INITIAL_RESEARCHERS: ResearcherSeed[] = [
     isVerified: true,
     publicationsCount: 27,
     patentsCount: 6,
+  },
+  {
+    id: 'res-fei-04',
+    name: 'Dr. Fei-Fei Zhang',
+    title: 'Professor of Computer Science & Vision',
+    bio: 'Spatial computing, embodied robotics vision, and zero-knowledge model verification.',
+    universityName: 'Stanford University',
+    universitySlug: 'stanford',
+    department: 'Computer Science Department',
+    interests: ['Computer Vision', 'Robotics', 'Spatial AI'],
+    orcid: '0000-0002-4410-1192',
+    isVerified: true,
+    publicationsCount: 54,
+    patentsCount: 11,
+  },
+  {
+    id: 'res-oxford-05',
+    name: 'Prof. Alistair Finch',
+    title: 'Director of Genomic Medicine',
+    bio: 'CRISPR base editing precision, single-cell transcriptomics, and computational immunology.',
+    universityName: 'University of Oxford',
+    universitySlug: 'oxford',
+    department: 'Nuffield Department of Medicine',
+    interests: ['Genomics', 'Bioinformatics', 'Molecular Biology'],
+    orcid: '0000-0004-9918-2041',
+    isVerified: true,
+    publicationsCount: 41,
+    patentsCount: 5,
   }
 ];
 
@@ -214,7 +299,7 @@ export const INITIAL_PUBLICATIONS: PublicationSeed[] = [
     verifiedBy: 'CHARUSAT Research Administrator',
     verifiedAt: '21 Sep 2026',
     isProtected: true,
-    authors: ['A. Researcher', 'B. Scholar', 'Tirth Ladani'],
+    authors: ['A. Patel', 'M. Singh', 'Tirth Ladani'],
     universityName: 'Charotar University of Science and Technology',
     universitySlug: 'charusat',
   },
@@ -233,40 +318,101 @@ export const INITIAL_PUBLICATIONS: PublicationSeed[] = [
     authors: ['John Smith', 'Elena Rostova'],
     universityName: 'Massachusetts Institute of Technology',
     universitySlug: 'mit',
+  },
+  {
+    id: 'pub-04',
+    title: 'Zero-Knowledge Machine Learning Proofs for Medical Diagnostics',
+    abstract: 'Ensuring model integrity and privacy preservation across distributed healthcare hospital nodes without revealing raw patient parameters.',
+    doi: '10.1109/TDSC.2025.339182',
+    publicationYear: 2025,
+    journalOrVenue: 'IEEE Transactions on Dependable and Secure Computing',
+    researchArea: 'Artificial Intelligence',
+    verificationStatus: 'VERIFIED',
+    verifiedBy: 'Stanford Academic Review Board',
+    verifiedAt: '03 Dec 2025',
+    isProtected: false,
+    authors: ['Fei-Fei Zhang', 'Marcus Vance'],
+    universityName: 'Stanford University',
+    universitySlug: 'stanford',
   }
 ];
 
 export const INITIAL_PATENTS: PatentSeed[] = [
   {
     id: 'pat-01',
-    title: 'Multi-Tenant Cryptographic Verification Protocol for Institutional Research Records',
-    patentNumber: 'US-2026-0192834-A1',
-    abstract: 'System and method for verifiable lineage attribution of academic publications across multi-tenant university workspaces without exposing raw research payloads.',
-    applicationDate: '2025-03-15',
-    grantDate: '2026-08-10',
-    technologyArea: 'Software Security & Cryptography',
-    verificationStatus: 'VERIFIED',
-    verifiedBy: 'CHARUSAT Patent Office',
-    verifiedAt: '12 Aug 2026',
-    isProtected: false,
-    inventors: ['Tirth Ladani'],
+    title: 'Adaptive signal processing for smart learning environments',
+    slug: 'US-2026-01284',
+    number: 'US-2026-01284',
+    inventors: ['Tirth Ladani', 'A. Patel'],
     universityName: 'Charotar University of Science and Technology',
     universitySlug: 'charusat',
+    issueDate: '2026',
+    techArea: 'Artificial Intelligence',
+    status: 'GRANTED',
   },
   {
     id: 'pat-02',
-    title: 'Low-Power Hydro-Acoustic Ground Sensor Array for Sub-surface Flow Tracking',
-    patentNumber: 'IN-2025-4100982-B2',
-    abstract: 'An autonomous sensor array utilizing piezo-electric microgenerators for continuous deep groundwater acoustic wave sampling.',
-    applicationDate: '2024-11-02',
-    grantDate: '2026-01-20',
-    technologyArea: 'Environmental Hardware Sensors',
-    verificationStatus: 'VERIFIED',
-    verifiedBy: 'CHARUSAT Patent Office',
-    verifiedAt: '25 Jan 2026',
-    isProtected: true,
-    inventors: ['A. Patel', 'Tirth Ladani'],
+    title: 'Low-energy membrane for groundwater recovery and micro-filtration',
+    slug: 'EP-2025-88310',
+    number: 'EP-2025-88310',
+    inventors: ['A. Patel', 'M. Singh'],
     universityName: 'Charotar University of Science and Technology',
     universitySlug: 'charusat',
+    issueDate: '2025',
+    techArea: 'Engineering',
+    status: 'GRANTED',
+  },
+  {
+    id: 'pat-03',
+    title: 'Privacy-preserving model training system for federated healthcare nodes',
+    slug: 'GB-2025-44102',
+    number: 'GB-2025-44102',
+    inventors: ['Fei-Fei Zhang', 'John Smith'],
+    universityName: 'Stanford University',
+    universitySlug: 'stanford',
+    issueDate: '2025',
+    techArea: 'Artificial Intelligence',
+    status: 'APPLICATION',
   }
 ];
+
+// Compatibility exports for components importing legacy simple structures:
+export const universities = INITIAL_UNIVERSITIES.map((u) => ({
+  name: u.name,
+  slug: u.slug,
+  city: `${u.city}, ${u.state}`,
+  country: u.country,
+  researchers: u.researchersCount,
+  publications: u.publicationsCount,
+  status: (u.status === 'VERIFIED' ? 'Verified' : 'Pending review') as 'Verified' | 'Pending review',
+}));
+
+export const researchers = INITIAL_RESEARCHERS.map((r) => ({
+  name: r.name,
+  slug: r.id,
+  role: `${r.title} · ${r.department}`,
+  university: r.universityName,
+  publications: r.publicationsCount,
+  patents: r.patentsCount,
+}));
+
+export const publications = INITIAL_PUBLICATIONS.map((p) => ({
+  title: p.title,
+  slug: p.doi.replace(/\//g, '-'),
+  authors: p.authors.join(', '),
+  university: p.universityName,
+  year: p.publicationYear,
+  doi: p.doi,
+  status: (p.verificationStatus === 'VERIFIED' ? 'Verified' : 'Request required') as 'Verified' | 'Request required',
+}));
+
+export const patents = INITIAL_PATENTS.map((pt) => ({
+  title: pt.title,
+  slug: pt.slug,
+  number: pt.number,
+  inventors: pt.inventors.join(', '),
+  university: pt.universityName,
+  date: pt.issueDate,
+  techArea: (pt.techArea === 'Artificial Intelligence' ? 'Artificial Intelligence' : 'Engineering') as 'Artificial Intelligence' | 'Engineering',
+  status: pt.status,
+}));

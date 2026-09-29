@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { patents } from '../../../../lib/mock-data';
+import { patents } from '../../../../lib/initialData';
 
 export default async function PatentDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;

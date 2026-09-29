@@ -261,7 +261,6 @@ export const accessGrants = pgTable('access_grants', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-// 10. Audit Logs, Notifications & Exports
 export const auditLogs = pgTable('audit_logs', {
   id: uuid('id').primaryKey().defaultRandom(),
   userId: text('user_id').notNull(),
@@ -275,6 +274,15 @@ export const auditLogs = pgTable('audit_logs', {
   timestamp: timestamp('timestamp').defaultNow().notNull(),
 });
 
+export const savedSearches = pgTable('saved_searches', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: uuid('user_id').references(() => platformAccounts.id).notNull(),
+  searchName: text('search_name').notNull(),
+  area: text('area'),
+  city: text('city'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
 export const notifications = pgTable('notifications', {
   id: uuid('id').primaryKey().defaultRandom(),
   userId: uuid('user_id').references(() => platformAccounts.id).notNull(),
@@ -286,7 +294,7 @@ export const notifications = pgTable('notifications', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
 
-export const exports = pgTable('exports', {
+export const dataExports = pgTable('exports', {
   id: uuid('id').primaryKey().defaultRandom(),
   userId: uuid('user_id').references(() => platformAccounts.id).notNull(),
   tenantId: text('tenant_id'),

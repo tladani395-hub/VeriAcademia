@@ -1,9 +1,26 @@
 import { notFound } from 'next/navigation';
-import { publications } from '../../../../lib/mock-data';
+import { INITIAL_PUBLICATIONS, publications } from '../../../../lib/initialData';
 
 export default async function PublicationDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const publication = publications.find((p) => p.slug === id);
+  const initialPub = INITIAL_PUBLICATIONS.find(
+    (p) => p.id === id || p.doi.replace(/\//g, '-') === id || p.doi === id
+  );
+  const publication = initialPub
+    ? {
+        title: initialPub.title,
+        slug: initialPub.doi.replace(/\//g, '-'),
+        authors: initialPub.authors.join(', '),
+        university: initialPub.universityName,
+        year: initialPub.publicationYear,
+        doi: initialPub.doi,
+        status: initialPub.verificationStatus === 'VERIFIED' ? 'Verified' : 'Request required',
+        abstract: initialPub.abstract,
+        journal: initialPub.journalOrVenue,
+        verifiedBy: initialPub.verifiedBy,
+      }
+    : publications.find((p) => p.slug === id);
+
   if (!publication) notFound();
 
   return (
