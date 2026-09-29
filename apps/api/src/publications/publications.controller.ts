@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Param, Body, Query } from '@nestjs/common';
-import { INITIAL_PUBLICATIONS } from '@veriacademia/database';
+import { INITIAL_PUBLICATIONS, db, publications } from '@veriacademia/database';
+import { eq } from 'drizzle-orm';
 
 @Controller('publications')
 export class PublicationsController {
@@ -10,6 +11,9 @@ export class PublicationsController {
     @Query('year') year?: string,
     @Query('area') area?: string,
   ) {
+    // TODO: Transition to persistent database storage
+    // const list = await db.select().from(publications);
+
     let list = INITIAL_PUBLICATIONS;
     if (query) {
       list = list.filter(p => p.title.toLowerCase().includes(query.toLowerCase()) || p.authors.some(a => a.toLowerCase().includes(query.toLowerCase())) || p.doi.toLowerCase().includes(query.toLowerCase()));
@@ -40,12 +44,26 @@ export class PublicationsController {
   }
 
   @Post('submit')
-  async submitPublication(@Body() body: any) {
+  async submitPublication(
+    @Body() body: {
+      title: string;
+      abstract: string;
+      publicationType: string;
+      researchArea: string;
+      department: string;
+      authors: { name: string; email: string }[];
+      journalOrVenue: string;
+      doi?: string;
+      fileUrl: string;
+    }
+  ) {
+    console.log('Submission received:', body);
     return {
       success: true,
       publicationId: `pub-${Date.now()}`,
       status: 'PENDING_REVIEW',
-      message: 'Publication submitted successfully to your university review queue.',
+      message: 'Publication submitted successfully!',
+      data: body,
     };
   }
 
