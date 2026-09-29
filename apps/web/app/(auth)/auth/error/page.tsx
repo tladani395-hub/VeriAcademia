@@ -1,0 +1,1 @@
+export default function AuthErrorPage(){return <div className="auth-card"><p className="eyebrow mono">ERROR</p><h1>Something went wrong</h1><p className="muted">There was a problem completing your request. Try again or start over.</p><div><a className="btn primary" href="/auth/sign-in">Back to sign in</a><a className="btn" href="/">Return home</a></div></div>}

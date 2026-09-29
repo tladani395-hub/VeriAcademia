@@ -1,0 +1,219 @@
+
+
+
+Veriacademia home · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VeriAcademia — Verified university research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#17252b;--muted:#52646a;--paper:#f7f9f7;--surface:#fff;--line:#d7e2df;--brand:#0b6172;--brand-strong:#074653;--gold:#a66a19;--danger:#a23b3b;--success:#26734d;--onbrand:#fff;--shadow:rgba(7,70,83,.22);
+--display:'Fraunces',Georgia,serif;--body:'Source Sans 3',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8f0ee;--muted:#a8babd;--paper:#10181a;--surface:#182426;--line:#33474a;--brand:#65c2c9;--brand-strong:#8adbe0;--gold:#e4b45f;--danger:#ff9b9b;--success:#77d3a0;--onbrand:#08262b;--shadow:rgba(0,0,0,.55)}}
+:root[data-theme="dark"]{--ink:#e8f0ee;--muted:#a8babd;--paper:#10181a;--surface:#182426;--line:#33474a;--brand:#65c2c9;--brand-strong:#8adbe0;--gold:#e4b45f;--danger:#ff9b9b;--success:#77d3a0;--onbrand:#08262b;--shadow:rgba(0,0,0,.55)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--display);line-height:1.12;margin:0;font-weight:700;letter-spacing:-.01em}
+.mono{font-family:var(--mono);font-size:.82em}
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:20px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font:700 22px var(--display);text-decoration:none}
+.logo svg{width:30px;height:30px}
+nav ul{display:flex;gap:22px;list-style:none;margin:0 auto;padding:0;font-weight:600;font-size:15px}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--brand)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:6px;font:600 16px var(--body);text-decoration:none;border:1.5px solid var(--brand);color:var(--brand);background:transparent;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn.primary{background:var(--brand);color:var(--onbrand)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px var(--shadow)}
+.icon-btn{width:44px;height:44px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:18px}
+.menu-btn{display:none}
+@media(max-width:860px){nav ul{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--surface);padding:12px 20px 20px;border-bottom:1px solid var(--line);gap:14px}nav ul.open{display:flex}.menu-btn{display:block}.nav .signin{display:none}.nav{gap:10px}.logo{margin-right:auto}}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:56px 0 72px;background:
+ linear-gradient(var(--line) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/48px 48px;}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,transparent 0,var(--paper) 75%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+@media(max-width:940px){.hero .wrap{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(38px,5.6vw,68px)}
+.lede{max-width:56ch;color:var(--muted);font-size:19px;margin:20px 0 28px}
+.search{background:var(--surface);border:1.5px solid var(--line);border-radius:8px;box-shadow:0 18px 40px -18px var(--shadow);max-width:600px}
+.tabs{display:flex;gap:2px;padding:6px 6px 0;overflow-x:auto}
+.tabs button{border:0;background:none;padding:10px 14px;font:600 15px var(--body);color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;min-height:44px}
+.tabs button[aria-selected=true]{color:var(--brand);border-color:var(--brand)}
+.sbar{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.sbar input{flex:1;min-width:0;min-height:48px;border:0;background:none;font:400 17px var(--body);color:var(--ink);padding:0 8px}
+.sbar input:focus{outline:none}
+.sbar:focus-within{box-shadow:inset 0 0 0 2px var(--brand)}
+.hint{margin:14px 0 0;color:var(--muted);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:99px;border:1px solid currentColor;font:600 13px var(--body)}
+.chip.ok{color:var(--success)}.chip.pend{color:var(--gold)}.chip.req{color:var(--brand)}
+/* 3D stage */
+.stage{perspective:1400px;height:470px;display:grid;place-items:center}
+.scene{position:relative;width:min(400px,86vw);height:440px;transform-style:preserve-3d;transform:rotateX(var(--rx,8deg)) rotateY(var(--ry,-18deg));transition:transform .25s ease-out}
+.card3d{position:absolute;left:0;right:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;box-shadow:0 30px 50px -20px var(--shadow)}
+.c1{top:0;transform:translateZ(-70px) translateX(34px);opacity:.92}
+.c2{top:78px;transform:translateZ(10px);}
+.c3{top:262px;transform:translateZ(90px) translateX(-26px);border-left:5px solid var(--gold)}
+.card3d h3{font-size:19px;margin:6px 0}
+.card3d p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.45}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.seal{position:absolute;right:-22px;top:150px;width:92px;height:92px;transform:translateZ(150px) rotate(-10deg);filter:drop-shadow(0 14px 14px var(--shadow));animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateZ(170px) rotate(-6deg) translateY(-8px)}}
+.samp{position:absolute;bottom:-4px;left:0;right:0;text-align:center;color:var(--muted);transform:translateZ(0)}
+@media(max-width:940px){.stage{height:430px}.seal{right:-6px}}
+/* sections */
+section{padding:84px 0}
+.sec-head{max-width:720px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(30px,4vw,44px)}
+.sec-head p{color:var(--muted);margin:14px 0 0}
+.paths{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}
+.path{padding:28px 24px;border-right:1px solid var(--line);transition:background .2s}
+.path:last-child{border:0}.path:hover{background:color-mix(in srgb,var(--brand) 7%,var(--surface))}
+.path svg{width:44px;height:44px;color:var(--brand);margin-bottom:16px;transition:transform .3s}
+.path:hover svg{transform:translateY(-4px) rotate(-6deg)}
+.path h3{font-size:22px;margin-bottom:8px}.path p{margin:0;color:var(--muted);font-size:15.5px}
+@media(max-width:940px){.paths{grid-template-columns:1fr 1fr}.path:nth-child(2){border-right:0}.path:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media(max-width:560px){.paths{grid-template-columns:1fr}.path{border-right:0;border-bottom:1px solid var(--line)}}
+.band{background:var(--surface);border-block:1px solid var(--line)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:32px}}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;border-left:2px solid var(--line)}
+.steps li{position:relative;padding:0 0 26px 30px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:-15px;top:0;width:28px;height:28px;border-radius:50%;background:var(--brand);color:var(--onbrand);font:600 14px/28px var(--mono);text-align:center}
+.steps b{display:block;font-family:var(--display);font-size:20px}
+.steps span{color:var(--muted)}
+.table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:15px}
+.table th,.table td{padding:13px 14px;text-align:left;border-bottom:1px solid var(--line)}
+.table th{font-weight:600;color:var(--muted);background:var(--surface)}
+.table tr:last-child td{border:0}
+.scroll{overflow-x:auto;max-width:100%}
+.cta{margin:0 20px;border-radius:12px;background:linear-gradient(135deg,var(--brand-strong),var(--brand));color:#fff;padding:56px 32px;text-align:center}
+:root[data-theme="dark"] .cta{color:#08262b}
+.cta h2{font-size:clamp(28px,4vw,42px);max-width:22ch;margin:0 auto 14px}
+.cta p{max-width:52ch;margin:0 auto 26px;opacity:.9}
+.cta .btn{background:#fff;color:#074653;border-color:#fff}
+.cta .btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+footer{padding:56px 0 40px;color:var(--muted);font-size:15px}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+@media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
+footer h4{margin:0 0 10px;color:var(--ink);font-family:var(--display)}
+footer a{display:block;text-decoration:none;padding:4px 0}footer a:hover{color:var(--brand)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#top" aria-label="VeriAcademia home"><svg viewBox="0 0 32 32" fill="none"><path d="M16 2 4 7v8c0 7.5 5 12.6 12 15 7-2.400 12-7.500 12-15V7L16 2Z" fill="var(--brand)"/><path d="m10.500 16 4 4 7.500-8" stroke="var(--onbrand)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>VeriAcademia</a>
+<nav aria-label="Primary"><ul id="menu">
+<li><a href="#universities">Universities</a></li><li><a href="#researchers">Researchers</a></li><li><a href="#publications">Publications</a></li><li><a href="#patents">Patents</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#trust">About and trust</a></li></ul></nav>
+<button class="icon-btn" id="theme" aria-label="Toggle light and dark theme">◐</button>
+<a class="btn signin" href="#signin">Sign in</a><a class="btn primary" href="#register">Register</a>
+<button class="icon-btn menu-btn" id="mb" aria-label="Open menu" aria-expanded="false">☰</button>
+</div></header>
+ 
+<main id="top">
+<div class="hero"><div class="wrap">
+<div>
+<h1>Research you can trace back to a verified university.</h1>
+<p class="lede">Search universities, researchers, publications and patents. Every record shows who verified it, when, and what you can open or request.</p>
+<div class="search">
+<div class="tabs" role="tablist" aria-label="Search category">
+<button role="tab" aria-selected="true">Publications</button><button role="tab" aria-selected="false">Researchers</button><button role="tab" aria-selected="false">Universities</button><button role="tab" aria-selected="false">Patents</button></div>
+<form class="sbar" role="search" onsubmit="return false"><label for="q" class="sr" style="position:absolute;left:-9999px">Search</label><input id="q" type="search" placeholder="Search by title, author, DOI or keyword"><button class="btn primary" type="submit">Search</button></form>
+</div>
+<p class="hint">A matching email lets you apply to a university. It does not make you a member.</p>
+<div class="chips" aria-label="Record status examples">
+<span class="chip ok">✔ Verified</span><span class="chip pend">◔ Pending review</span><span class="chip req">🔒 Request required</span></div>
+</div>
+<div class="stage" aria-label="Illustration of a verified publication record"><div class="scene" id="scene">
+<div class="card3d c1"><div class="row"><span class="mono">UNIVERSITY</span><span class="chip ok">✔ Verified</span></div><h3>Example University</h3><p>Verified domains · 3 institutes · 12 departments</p></div>
+<div class="card3d c2"><div class="row"><span class="mono">doi:10.0000/sample.2026</span><span class="chip req">🔒 Request required</span></div><h3>Groundwater recovery in semi-arid basins</h3><p>A. Researcher, B. Scholar · Example University · 2026</p></div>
+<div class="card3d c3"><div class="row"><span class="mono">EVIDENCE</span><span class="mono">Reviewed 21 Sep 2026</span></div><p style="margin-top:8px">Affiliation confirmed by university reviewer. Linked to the canonical record. Revision history available.</p></div>
+<svg class="seal" viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="42" fill="var(--gold)"/><circle cx="46" cy="46" r="34" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="3 4"/><path d="m28 47 12 12 24-27" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="samp mono">Sample record for illustration</div>
+</div></div>
+</div></div>
+ 
+<section id="universities"><div class="wrap">
+<div class="sec-head"><h2>Four ways to use VeriAcademia</h2><p>Each role sees only what it is allowed to see. Access is checked on the server, not just hidden in the menu.</p></div>
+<div class="paths">
+<div class="path"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.500" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="19" r="11"/><path d="m28 28 10 10"/></svg><h3>Discover</h3><p>Browse verified universities, public researchers, publications and patents without an account.</p></div>
+<div class="path"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.500" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38V14l16-8 16 8v24M6 38h32M16 38V24h12v14"/></svg><h3>Join</h3><p>Register your university, prove domain ownership, then invite approved members.</p></div>
+<div class="path"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.500" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h18l8 8v24H10z"/><path d="M28 6v8h8M16 24h14M16 31h10"/></svg><h3>Contribute</h3><p>Keep your researcher profile current and submit papers and patents with supporting evidence.</p></div>
+<div class="path"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="2.500" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4 7 10v12c0 9 6 15 15 18 9-3 15-9 15-18V10z"/><path d="m15 22 5 5 9-10"/></svg><h3>Govern</h3><p>Review submissions, manage roles, export data and keep a full audit log.</p></div>
+</div></div></section>
+ 
+<section class="band" id="trust"><div class="wrap split">
+<div>
+<h2 style="font-size:clamp(28px,3.6vw,40px);margin-bottom:12px">How a record earns the Verified label</h2>
+<p style="color:var(--muted);margin:0 0 30px">Nothing is public just because it was uploaded. Each step has a named reviewer and a saved history.</p>
+<ol class="steps">
+<li><b>Verify the university</b><span>Platform reviewers check evidence and domain ownership before a university goes live.</span></li>
+<li><b>Approve the member</b><span>A university administrator approves each researcher. Email eligibility alone is not enough.</span></li>
+<li><b>Review the record</b><span>A reviewer checks affiliation, duplicates and rights before a paper or patent becomes active.</span></li>
+<li><b>Publish or protect</b><span>Public metadata is searchable. Protected files need an access request that the university can approve or refuse.</span></li>
+</ol></div>
+<div>
+<div class="scroll"><table class="table" id="analytics">
+<caption class="mono" style="text-align:left;padding-bottom:10px;color:var(--muted)">What each visitor can do</caption>
+<thead><tr><th>Visitor</th><th>Public metadata</th><th>Protected files</th></tr></thead>
+<tbody><tr><td>Anyone</td><td>Search and read</td><td>Not available</td></tr>
+<tr><td>Registered user</td><td>Search and read</td><td>Request access</td></tr>
+<tr><td>University member</td><td>Search and read</td><td>Own university's records</td></tr>
+<tr><td>Administrator</td><td>Full control in scope</td><td>Approve, revoke, audit</td></tr></tbody></table></div>
+</div></div></section>
+ 
+<section id="researchers"><div class="wrap">
+<div class="sec-head"><h2>Built for institutions that need to answer for their data</h2></div>
+<div class="split" style="align-items:start">
+<p style="margin:0;color:var(--muted)">Each university runs as its own isolated space. Data, files, search and reports never cross from one university to another unless a grant says so.</p>
+<p style="margin:0;color:var(--muted)">One publication is stored once and linked to every university that legitimately claims it, so duplicates and conflicting affiliations do not pile up.</p>
+</div></div></section>
+ 
+<div class="cta" id="register"><h2>Bring your university's research into one verified place</h2><p>Create an account, start a university application and add your domains. A platform reviewer will contact you with the next step.</p>
+<a class="btn" href="#register">Register a university</a> <a class="btn ghost" href="#publications">Browse publications</a></div>
+</main>
+ 
+<footer><div class="wrap fgrid" id="signin">
+<div><div class="logo" style="font-size:20px;color:var(--ink)">VeriAcademia</div><p style="max-width:34ch">Verified universities. Traceable research. Controlled access.</p></div>
+<div><h4>Discover</h4><a href="#universities">Universities</a><a href="#researchers">Researchers</a><a href="#publications">Publications</a><a href="#patents">Patents</a></div>
+<div><h4>Platform</h4><a href="#trust">How verification works</a><a href="#analytics">Public analytics</a><a href="#register">Register a university</a></div>
+<div><h4>Support</h4><a href="#">Help</a><a href="#">Privacy</a><a href="#">Accessibility</a></div>
+</div></footer>
+ 
+<script>
+(function(){
+var root=document.documentElement,sc=document.getElementById('scene');
+try{var t=localStorage.getItem('va-theme');if(t)root.setAttribute('data-theme',t)}catch(e){}
+document.getElementById('theme').onclick=function(){
+ var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+ var n=dark?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('va-theme',n)}catch(e){}};
+var mb=document.getElementById('mb'),m=document.getElementById('menu');
+mb.onclick=function(){var o=m.classList.toggle('open');mb.setAttribute('aria-expanded',o)};
+document.querySelectorAll('.tabs button').forEach(function(b){b.onclick=function(){
+ document.querySelectorAll('.tabs button').forEach(function(x){x.setAttribute('aria-selected','false')});
+ b.setAttribute('aria-selected','true');
+ document.getElementById('q').placeholder={Publications:'Search by title, author, DOI or keyword',Researchers:'Search by name, interest or university',Universities:'Search by name, city or country',Patents:'Search by title, inventor or patent number'}[b.textContent]}});
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+ var st=sc.parentNode;
+ st.addEventListener('pointermove',function(e){var r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  sc.style.setProperty('--ry',(-18+x*26)+'deg');sc.style.setProperty('--rx',(8-y*20)+'deg')});
+ st.addEventListener('pointerleave',function(){sc.style.setProperty('--ry','-18deg');sc.style.setProperty('--rx','8deg')});
+}
+})();
+</script>
+</body>
+</html>
+ 
+

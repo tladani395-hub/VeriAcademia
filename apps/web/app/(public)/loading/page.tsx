@@ -1,0 +1,1 @@
+export default function Loading(){return <main><section className="page-hero"><div className="wrap"><p className="muted">Loading…</p></div></section></main>;}
