@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Param, Body, Query } from '@nestjs/common';
-import { INITIAL_PUBLICATIONS, db, publications } from '@veriacademia/database';
+import { db, publications } from '@veriacademia/database';
 import { eq } from 'drizzle-orm';
 
 @Controller('publications')
@@ -11,10 +11,16 @@ export class PublicationsController {
     @Query('year') year?: string,
     @Query('area') area?: string,
   ) {
-    // TODO: Transition to persistent database storage
-    // const list = await db.select().from(publications);
+    const listFromDb = await db.select().from(publications);
 
-    let list = INITIAL_PUBLICATIONS;
+    // Map database rows to the expected PublicationSeed structure
+    let list: any[] = listFromDb.map(p => ({
+      ...p,
+      authors: [], // TODO: Query authors table
+      universityName: '', // TODO: Query university name
+      universitySlug: '', // TODO: Query university slug
+    }));
+
     if (query) {
       list = list.filter(p => p.title.toLowerCase().includes(query.toLowerCase()) || p.authors.some(a => a.toLowerCase().includes(query.toLowerCase())) || p.doi.toLowerCase().includes(query.toLowerCase()));
     }
@@ -32,10 +38,19 @@ export class PublicationsController {
 
   @Get(':id')
   async getPublicationById(@Param('id') id: string) {
-    const pub = INITIAL_PUBLICATIONS.find(p => p.id === id) || INITIAL_PUBLICATIONS[0];
+    const [pub] = await db.select().from(publications).where(eq(publications.id, id));
+
+    // Map database row to expected structure
+    const data = pub ? {
+      ...pub,
+      authors: [], // TODO: Query authors table
+      universityName: '', // TODO: Query university name
+      universitySlug: '', // TODO: Query university slug
+    } : null;
+
     return {
       success: true,
-      data: pub,
+      data: data,
       revisionHistory: [
         { date: '28 Sep 2026', action: 'VERIFIED', reviewer: 'CHARUSAT Research Administrator', notes: 'Affiliation and DOI verified against official registry.' },
         { date: '25 Sep 2026', action: 'SUBMITTED', reviewer: 'Dr. Tirth Ladani', notes: 'Initial publication submission with PDF evidence.' },
